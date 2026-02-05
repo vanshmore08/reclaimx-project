@@ -1,0 +1,970 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ================= BODY + AI FLOW BACKGROUND ================= */
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(0,229,255,0.25), transparent 40%),
+    radial-gradient(circle at 90% 30%, rgba(138,43,226,0.25), transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(30,94,255,0.25), transparent 45%),
+    linear-gradient(135deg, #030615, #070f2a, #030615);
+
+  background-size: 300% 300%;
+  animation: aiFlow 15s ease infinite;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+@keyframes aiFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ================= HEADER (Updated for Top-Left) ================= */
+.main-header {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+}
+
+.logo-box {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  padding: 8px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,229,255,0.6);
+}
+
+.brand-info {
+  text-align: left;
+}
+
+.brand-info h1 {
+  font-size: 24px;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, #1e5eff, #00e5ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.brand-info p {
+  font-size: 11px;
+  color: #cfefff;
+  opacity: 0.8;
+  margin: 0;
+}
+
+/* ================= AUTH/INDEX CONTAINER (New) ================= */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* ================= TABS STYLING (New) ================= */
+.tab-group {
+  display: flex;
+  background: #f0f2f5;
+  padding: 5px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+}
+
+.tab-btn {
+  flex: 1 !important;
+  padding: 12px !important;
+  border: none !important;
+  background: none !important;
+  cursor: pointer;
+  font-weight: 600;
+  color: #666 !important;
+  border-radius: 10px !important;
+  transition: 0.3s;
+  margin-top: 0 !important;
+  width: auto !important;
+  font-size: 14px !important;
+  box-shadow: none !important;
+}
+
+.tab-btn.active {
+  background: #fff !important;
+  color: #1e5eff !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+}
+
+.tab-btn:hover {
+    transform: none !important;
+}
+
+/* ================= CONTAINERS ================= */
+.container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+/* ================= GLASSMORPHISM CARD ================= */
+.card, .auth-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  padding: 30px;
+  color: #1a1a1a;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  animation: slideUp 0.6s ease-out;
+  width: 100%;
+  max-width: 420px;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card h2 {
+  margin-bottom: 10px;
+  text-align: center;
+  color: #030615;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* ================= INPUTS & FORMS ================= */
+input, textarea, select {
+  width: 100%;
+  padding: 14px;
+  margin-top: 12px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  font-size: 15px;
+  transition: 0.3s;
+  color: #333;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #1e5eff;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(30,94,255,0.2);
+}
+
+/* ================= BUTTONS ================= */
+button, .main-btn {
+  width: 100%;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(90deg, #1e5eff, #00e5ff);
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  box-shadow: 0 8px 20px rgba(30,94,255,0.3);
+  transition: 0.3s;
+}
+
+button:hover, .main-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(30,94,255,0.4);
+}
+
+button:active { transform: translateY(0); }
+
+/* ================= DASHBOARD STATS ================= */
+.stats-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.stat-box {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 15px;
+  border-radius: 18px;
+  text-align: center;
+  backdrop-filter: blur(5px);
+  color: white;
+}
+
+.stat-box p { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+.stat-box h3 { font-size: 28px; margin-top: 5px; color: #00e5ff; }
+
+/* ================= CATEGORY OPTIONS ================= */
+.category-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.category-options div {
+  padding: 10px 16px;
+  border-radius: 25px;
+  background: #f0f4ff;
+  color: #1e5eff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: 0.3s;
+}
+
+.category-options div:hover { background: #e0e8ff; }
+
+.category-options .active {
+  background: #1e5eff;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(30,94,255,0.3);
+}
+
+/* ================= ITEM CARDS (LIST VIEW) ================= */
+.item-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 20px;
+  margin-top: 15px;
+  color: #333;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+}
+
+.item-card h3 { color: #1e5eff; margin-bottom: 8px; }
+.item-card p { font-size: 14px; margin: 4px 0; color: #555; }
+
+.item-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+/* Badge for Lost/Found */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.badge-lost { background: #ffe9e9; color: #ff4b2b; }
+.badge-found { background: #e9fff1; color: #2ecc71; }
+
+/* ================= ROLE SWITCHER (New) ================= */
+.role-switcher {
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    text-align: center;
+}
+
+.role-switcher span {
+    display: block;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+.ghost-btn {
+    background: transparent !important;
+    color: #1e5eff !important;
+    border: 1px solid #1e5eff !important;
+    padding: 8px 15px !important;
+    font-size: 13px !important;
+    box-shadow: none !important;
+    width: auto !important;
+    margin-top: 0 !important;
+}
+
+/* ================= LINKS & UTILS ================= */
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  color: #00e5ff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.back-link:hover { text-decoration: underline; }
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #eee;
+  margin: 20px 0;
+}
+
+/* ================= GUEST/USER GRID ================= */
+.guest-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+.guest-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+  border: 1px solid #f0f0f0;
+  text-align: left;
+}
+
+.guest-card:hover {
+  transform: scale(1.03);
+  border-color: #1e5eff;
+  box-shadow: 0 10px 25px rgba(30,94,255,0.1);
+}
+
+.guest-card h4 { color: #1e5eff; margin-bottom: 5px; }
+.guest-card p { font-size: 13px; color: #666; }
+
+/* ================= ADMIN SPECIFIC ================= */
+.delete-btn {
+  background: #ff4b2b !important;
+  width: auto !important;
+  padding: 8px 15px !important;
+  font-size: 12px !important;
+  margin: 0 !important;
+}
+
+#adminCodeGroup {
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+/* ================= NEW USER ACCESS UPDATES ================= */
+
+/* Top-Right Navigation */
+.top-right-nav {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    z-index: 100;
+}
+
+/* Modern Logout Pill Button */
+.logout-pill {
+    background: rgba(255, 75, 43, 0.1) !important;
+    color: #ff4b2b !important;
+    border: 1.5px solid #ff4b2b !important;
+    padding: 10px 25px !important;
+    border-radius: 50px !important;
+    width: auto !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px;
+    box-shadow: none !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+/* Logout Button Toggle Effect */
+.logout-pill:hover {
+    background: #ff4b2b !important;
+    color: white !important;
+    transform: scale(1.1) translateY(-2px) !important;
+    box-shadow: 0 10px 20px rgba(255, 75, 43, 0.3) !important;
+}
+
+/* Panel Card Styling */
+.panel-card {
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 30px;
+    padding: 40px;
+    width: 100%;
+    max-width: 800px; /* Increased for grid layout */
+    color: #1a1a1a;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+    text-align: center;
+    animation: slideUp 0.6s ease-out;
+}
+
+/* User Grid Layout */
+.guest-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* Modern Guest Card / Tabs */
+.guest-card {
+    background: #ffffff;
+    padding: 30px 20px;
+    border-radius: 20px;
+    border: 1px solid #f0f0f0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Toggle Effect for Tabs */
+.guest-card:hover {
+    transform: translateY(-10px);
+    border-color: #1e5eff;
+    background: linear-gradient(145deg, #ffffff, #f0f5ff);
+    box-shadow: 0 15px 35px rgba(30, 94, 255, 0.15);
+}
+
+.guest-card h4 {
+    color: #1e5eff;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.guest-card p {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* Decorative Icons inside Cards */
+.icon-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.lost-bg { background: #ff4b2b; }
+.found-bg { background: #2ecc71; }
+.view-bg { background: #1e5eff; }
+
+/* Animation for smooth page entry */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* ================= REPORT PAGE ENHANCEMENTS ================= */
+
+.report-card {
+    max-width: 600px !important;
+    text-align: left !important;
+}
+
+/* Back Button with Toggle Effect */
+.modern-back-btn {
+    text-decoration: none;
+    color: #1e5eff;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    border-radius: 10px;
+    background: #f0f5ff;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.modern-back-btn:hover {
+    background: #1e5eff;
+    color: white;
+    transform: translateX(-5px);
+}
+
+.section-tag {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: #888;
+    margin: 25px 0 10px 0;
+}
+
+.label-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+    margin-top: 15px;
+}
+
+/* Category Grid & Pill Toggle */
+.category-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.cat-pill {
+    padding: 8px 16px;
+    background: #f0f2f5;
+    border: 1px solid transparent;
+    border-radius: 50px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #555;
+}
+
+.cat-pill:hover {
+    background: #e0e8ff;
+    border-color: #1e5eff;
+    color: #1e5eff;
+    transform: scale(1.05);
+}
+
+.cat-pill.active {
+    background: #1e5eff;
+    color: white;
+    box-shadow: 0 5px 15px rgba(30, 94, 255, 0.3);
+}
+
+/* Input Row for side-by-side fields */
+.input-row {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+.input-col { flex: 1; }
+
+/* Enhanced Upload Section */
+.upload-container {
+    margin-top: 20px;
+    position: relative;
+}
+
+.upload-label {
+    display: block;
+    border: 2px dashed #ddd;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.upload-label:hover {
+    border-color: #1e5eff;
+    background: #f9fbff;
+}
+
+.upload-icon { font-size: 30px; display: block; margin-bottom: 10px; }
+
+#preview-wrapper {
+    position: relative;
+    margin-top: 15px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+#preview { width: 100%; display: block; }
+
+.remove-img {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255,0,0,0.8);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Submit Button Toggle Effect */
+.submit-btn {
+    margin-top: 30px;
+    height: 55px;
+    font-size: 18px;
+    letter-spacing: 1px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.submit-btn:hover {
+    transform: scale(1.02) translateY(-3px);
+    box-shadow: 0 15px 30px rgba(30, 94, 255, 0.4);
+}
+.info-notice {
+    background: #e9fff1;
+    border-left: 4px solid #2ecc71;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    color: #27ae60;
+    font-size: 13px;
+}
+/* Note Box General Styling */
+.info-notice {
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 25px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    text-align: left;
+}
+
+/* Specific for Report Found (Green) */
+.found-notice {
+    background: #e9fff1;
+    border-left: 5px solid #2ecc71;
+    color: #27ae60;
+}
+
+/* Specific for Report Lost (Blue) */
+.lost-notice {
+    background: #f0f5ff;
+    border-left: 5px solid #1e5eff;
+    color: #1e5eff;
+}
+
+.info-notice strong {
+    font-weight: 700;
+}
+.info-notice {
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 25px;
+    font-size: 13.5px;
+    line-height: 1.6; /* Thoda gap badhaya hai */
+    text-align: left;
+}
+
+.info-notice strong {
+    font-weight: 700;
+}
+/* Gallery Grid Layout */
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.modern-item-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 15px !important;
+    border: 1px solid #eee;
+    height: 100%;
+}
+
+.item-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.no-img {
+    width: 100%;
+    height: 180px;
+    background: #f0f2f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.item-details h3 {
+    font-size: 18px;
+    color: #1e5eff;
+}
+
+.item-desc {
+    font-style: italic;
+    color: #777;
+    margin-top: 8px !important;
+}
+
+/* Contact Team Button with Toggle Effect */
+.contact-team-btn {
+    height: 45px;
+    background: #1e5eff !important;
+    color: white !important;
+    font-size: 14px !important;
+    padding: 10px !important;
+    border-radius: 10px !important;
+    margin-top: 15px !important;
+    width: 100% !important;
+    transition: all 0.3s ease !important;
+}
+
+.contact-team-btn:hover {
+    background: #00e5ff !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 15px rgba(0, 229, 255, 0.3) !important;
+}
+/* Gallery Grid Layout - Fixed Width */
+.items-grid {
+    display: grid;
+    /* Cards ko zyada chouda hone se rokne ke liye 320px ki limit */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 320px)); 
+    gap: 25px;
+    margin-top: 25px;
+    justify-content: center; /* Cards ko center mein rakhega */
+}
+
+.modern-item-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #fff;
+    padding: 15px !important;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    height: 100%;
+    transition: 0.3s;
+}
+
+/* Image section ko squareish feel dene ke liye */
+.item-img, .no-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Button ki size card ke andar fit rahegi */
+.contact-team-btn {
+    height: 42px;
+    background: linear-gradient(90deg, #1e5eff, #00e5ff) !important;
+    color: white !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    padding: 0 15px !important;
+    border-radius: 10px !important;
+    margin-top: 15px !important;
+    width: 100% !important;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease !important;
+}
+
+/* Note Section ko thoda compact banaya hai */
+.info-notice {
+    max-width: 100%; 
+    margin: 40px auto 0;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 13px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+/* Password Wrapper & Toggle Icon */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 55%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #666;
+    user-select: none;
+    z-index: 10;
+}
+
+.toggle-password:hover {
+    color: #1e5eff;
+}
+
+/* Ensure input doesn't overlap icon */
+.password-wrapper input {
+    padding-right: 45px !important;
+}
+/* Admin Nav Adjustments */
+.admin-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.history-btn {
+    background: rgba(30, 94, 255, 0.1) !important;
+    color: #1e5eff !important;
+    border: 1px solid #1e5eff !important;
+    padding: 8px 20px !important;
+    border-radius: 50px !important;
+    width: auto !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+    transition: all 0.3s ease !important;
+    box-shadow: none !important;
+}
+
+.history-btn:hover {
+    background: #1e5eff !important;
+    color: white !important;
+    transform: translateY(-2px);
+}
+
+/* Resolved Button (Purana Delete Button) */
+.resolved-btn {
+    background: #2ecc71 !important;
+    color: white !important;
+    border-radius: 12px !important;
+    transition: all 0.3s ease !important;
+}
+
+.resolved-btn:hover {
+    transform: scale(1.05) !important;
+    background: #27ae60 !important;
+}
+
+/* History Button Styling */
+.history-btn {
+    background: transparent !important;
+    color: #1e5eff !important;
+    border: 1px solid #1e5eff !important;
+    padding: 8px 15px !important;
+    border-radius: 50px !important;
+    width: auto !important;
+    cursor: pointer;
+    font-size: 13px !important;
+    transition: all 0.3s ease !important;
+}
+
+.history-btn:hover {
+    background: #1e5eff !important;
+    color: white !important;
+    transform: translateY(-2px);
+}
+
+/* Toggling effect for all items */
+.item-card:hover, .stat-box:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    transition: 0.3s ease;
+}
+/* Premium Resolved Button */
+.resolved-btn {
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%) !important;
+    box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.resolved-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(46, 204, 113, 0.5);
+}
+
+/* History Buttons */
+.restore-btn {
+    flex: 1;
+    background: linear-gradient(135deg, #1e5eff 0%, #00e5ff 100%);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.delete-btn {
+    flex: 1;
+    background: linear-gradient(135deg, #ff4b2b 0%, #ff416c 100%);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.restore-btn:hover, .delete-btn:hover {
+    opacity: 0.9;
+    transform: scale(1.03);
+}
+
+/* Tab Animation */
+.stat-box {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+/* Modal Style */
+#photoModal {
+    backdrop-filter: blur(10px);
+    transition: 0.3s ease;
+}
+
+#modalImg {
+    animation: zoomIn 0.3s ease-out;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* History Btn Specific */
+.history-btn {
+    background: rgba(30, 94, 255, 0.1) !important;
+    color: #1e5eff !important;
+    border: 1.5px solid #1e5eff !important;
+    padding: 8px 18px !important;
+    border-radius: 50px !important;
+    cursor: pointer;
+    font-weight: 700;
+}

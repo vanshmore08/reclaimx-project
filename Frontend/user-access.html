@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Access | ReClaimX</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // Security Check: Agar user logged in nahi hai toh wapas bhej do
+        if (sessionStorage.getItem("userLoggedIn") !== "true") {
+            window.location.href = "index.html";
+        }
+    </script>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="logo-box">
+        <img src="logo.png" class="logo" alt="Logo">
+        <div class="brand-info">
+            <h1>RECLAIMX</h1>
+            <p>Dr. DY Patil ACS College</p>
+        </div>
+    </div>
+</header>
+
+<div class="top-right-nav">
+    <button class="logout-pill" onclick="confirmLogout()" style="cursor: pointer;">
+        Logout
+    </button>
+</div>
+
+<main class="auth-container">
+    <div class="panel-card">
+        <h2>User Access Panel</h2>
+        <p class="subtitle">What would you like to do today?</p>
+
+        <div class="guest-grid">
+            <div class="guest-card" onclick="location.href='report-lost.html'" style="cursor: pointer;">
+                <div class="icon-circle lost-bg">!</div>
+                <h4>Report Lost Item</h4>
+                <p>Lost something? Post details here.</p>
+            </div>
+
+            <div class="guest-card" onclick="location.href='report-found.html'" style="cursor: pointer;">
+                <div class="icon-circle found-bg">✓</div>
+                <h4>Report Found Item</h4>
+                <p>Found something? Help return it.</p>
+            </div>
+
+            <div class="guest-card" onclick="location.href='view-found.html'" style="cursor: pointer;">
+                <div class="icon-circle view-bg">👁</div>
+                <h4>View Found Items</h4>
+                <p>Check if your lost item was found.</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    function confirmLogout() {
+        // Purana style confirm box as per your request
+        const response = confirm("Do you really want to logout?");
+        if (response) {
+            // Sirf user ka session clear karna (Admin ka nahi)
+            sessionStorage.removeItem("userLoggedIn");
+            sessionStorage.removeItem("loggedInUserEmail");
+            window.location.href = "index.html";
+        }
+    }
+</script>
+</body>
+</html>

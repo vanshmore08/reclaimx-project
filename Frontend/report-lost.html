@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Lost Item | ReClaimX</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="main-header">
+    <div class="logo-box">
+        <img src="logo.png" class="logo" alt="Logo">
+        <div class="brand-info">
+            <h1>RECLAIMX</h1>
+            <p>Dr. DY Patil ACS College</p>
+        </div>
+    </div>
+</header>
+
+<main class="auth-container" style="padding-top: 100px;">
+    <div class="card report-card">
+        <a href="user-access.html" class="modern-back-btn">
+            <span class="arrow">←</span> Back to Panel
+        </a>
+
+        <h2>Report Lost Item</h2>
+        <p class="subtitle">Please provide as much detail as possible to help us identify your item.</p>
+
+        <div class="form-section">
+            <h4 class="section-tag">ITEM INFORMATION</h4>
+            <input id="itemName" type="text" placeholder="What did you lose? (e.g. Blue Wallet) *">
+            
+            <p class="label-text">Select Category *</p>
+            <div class="category-grid">
+                <div class="cat-pill" onclick="selectCategory(this)">Electronics</div>
+                <div class="cat-pill" onclick="selectCategory(this)">ID Cards</div>
+                <div class="cat-pill" onclick="selectCategory(this)">Documents</div>
+                <div class="cat-pill" onclick="selectCategory(this)">Wallets/Bags</div>
+                <div class="cat-pill" onclick="selectCategory(this)">Keys</div>
+                <div class="cat-pill" onclick="selectCategory(this)">Books/Stationary</div>
+                <div class="cat-pill" onclick="selectCategory(this)">Jewelry/Watch</div>
+                <div class="cat-pill" onclick="selectCategory(this)">Other</div>
+            </div>
+            <input type="hidden" id="category">
+
+            <textarea id="description" rows="3" placeholder="Description (Color, brand, unique marks...)"></textarea>
+            
+            <div class="input-row">
+                <div class="input-col">
+                    <p class="label-text">Date Lost</p>
+                    <input id="dateLost" type="date">
+                </div>
+                <div class="input-col">
+                    <p class="label-text">Last Seen Location</p>
+                    <input id="location" type="text" placeholder="e.g. Canteen, Library">
+                </div>
+            </div>
+
+            <div class="upload-container">
+                <label for="photo" class="upload-label">
+                    <div class="upload-content">
+                        <span class="upload-icon">📸</span>
+                        <p>Upload Item Photo (Optional)</p>
+                        <small>upload the item's image to find fastly</small>
+                    </div>
+                    <input type="file" id="photo" accept="image/*" style="display:none;">
+                </label>
+                <div id="preview-wrapper" style="display:none;">
+                    <img id="preview" alt="Preview">
+                    <button type="button" class="remove-img" onclick="removeImage()">✕</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+    <h4 class="section-tag">CONTACT INFORMATION</h4>
+    <input id="fullName" type="text" placeholder="Your Full Name *">
+    <div class="input-row">
+        <input id="mobile" type="tel" placeholder="Mobile Number *">
+        <input id="classCourse" type="text" placeholder="Class/Year">
+    </div>
+</div>
+
+<div class="info-notice lost-notice">
+    <p><strong>Note:</strong> Please check for your lost item in <strong>Office Room 306</strong> after submitting the report.</p>
+    <div style="margin-top: 10px; padding-top: 10px; border-top: 1px dashed rgba(30, 94, 255, 0.2); font-size: 12px;">
+        <strong>Team Contact:</strong> 📞 +91 8446187837 | ✉️ reclaimx01@gmail.com
+    </div>
+</div>
+<button type="button" class="main-btn submit-btn" onclick="submitLost()">
+    Submit Lost Report
+</button>
+    </div>
+</main>
+
+<script src="lost.js"></script>
+</body>
+</html>

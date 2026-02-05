@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Found Item | ReClaimX</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="main-header">
+    <div class="logo-box">
+        <img src="logo.png" class="logo" alt="Logo">
+        <div class="brand-info">
+            <h1>RECLAIMX</h1>
+            <p>Dr. DY Patil ACS College</p>
+        </div>
+    </div>
+</header>
+
+<main class="auth-container" style="padding-top: 100px;">
+    <div class="card report-card">
+        <a href="user-access.html" class="modern-back-btn">
+            <span class="arrow">←</span> Back to Panel
+        </a>
+
+        <h2>Report Found Item</h2>
+        <p class="subtitle">Help someone find their lost belongings by providing details.</p>
+
+        <div class="form-section">
+            <h4 class="section-tag">ITEM INFORMATION</h4>
+            <input id="itemName" type="text" placeholder="What did you find? (e.g. Black Watch) *">
+            
+            <p class="label-text">Select Category *</p>
+            <div class="category-grid">
+                <div class="cat-pill" onclick="selectCategory(this)">Electronics</div>
+                <div class="cat-pill" onclick="selectCategory(this)">ID Cards</div>
+                <div class="cat-pill" onclick="selectCategory(this)">Documents</div>
+                <div class="cat-pill" onclick="selectCategory(this)">Wallets/Bags</div>
+                <div class="cat-pill" onclick="selectCategory(this)">Keys</div>
+                <div class="cat-pill" onclick="selectCategory(this)">Books/Stationary</div>
+                <div class="cat-pill" onclick="selectCategory(this)">Other</div>
+            </div>
+            <input type="hidden" id="category">
+
+            <textarea id="description" rows="3" placeholder="Description (Appearance, condition, color...)"></textarea>
+            
+            <div class="input-row">
+                <div class="input-col">
+                    <p class="label-text">Date Found</p>
+                    <input id="dateFound" type="date">
+                </div>
+                <div class="input-col">
+                    <p class="label-text">Found Location</p>
+                    <input id="location" type="text" placeholder="e.g. Room 202, Playground">
+                </div>
+            </div>
+
+            <div class="upload-container">
+                <label for="photo" class="upload-label">
+                    <div class="upload-content">
+                        <span class="upload-icon">📸</span>
+                        <p>Upload Photo of Found Item</p>
+                        <small>Help the owner identify it faster</small>
+                    </div>
+                    <input type="file" id="photo" accept="image/*" style="display:none;">
+                </label>
+                <div id="preview-wrapper" style="display:none;">
+                    <img id="preview" alt="Preview">
+                    <button type="button" class="remove-img" onclick="removeImage()">✕</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h4 class="section-tag">YOUR INFORMATION (Finder)</h4>
+            <input id="fullName" type="text" placeholder="Your Name *">
+            <input id="mobile" type="tel" placeholder="Mobile Number *">
+        </div>
+
+        <div class="info-notice found-notice">
+    <p><strong>Note:</strong> Please submit the found item to <strong>Office Room 306</strong> after reporting.</p>
+    <div style="margin-top: 10px; padding-top: 10px; border-top: 1px dashed rgba(46, 204, 113, 0.2); font-size: 12px;">
+        <strong>Team Contact:</strong> 📞 +91 8446187837 | ✉️ reclaimx01@gmail.com
+    </div>
+</div>
+
+        <button type="button" class="main-btn submit-btn" onclick="submitFound()">
+            Submit Found Report
+        </button>
+    </div>
+</main>
+
+<script src="found.js"></script>
+</body>
+</html>

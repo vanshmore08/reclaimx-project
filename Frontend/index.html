@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReClaimX | Login & Signup</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="main-header">
+    <div class="logo-box">
+        <img src="logo.png" class="logo" alt="Logo">
+        <div class="brand-info">
+            <h1>RECLAIMX</h1>
+            <p>Dr. DY Patil ACS College</p>
+        </div>
+    </div>
+</header>
+
+<main class="auth-container">
+    <div class="auth-card">
+        <div class="tab-group">
+            <button id="loginTab" class="tab-btn active" onclick="toggleForm('login')">Login</button>
+            <button id="signupTab" class="tab-btn" onclick="toggleForm('signup')">Sign Up</button>
+        </div>
+
+        <h2 id="formTitle">Welcome Back...!</h2>
+        <p class="subtitle" id="formSubtitle">Please enter your details to continue.</p>
+
+        <div class="input-group">
+            <input id="email" type="email" placeholder="Email Address *">
+
+            <div class="password-wrapper">
+                <input id="pass" type="password" placeholder="Password *">
+                <span class="toggle-password" onclick="togglePasswordVisibility('pass')">👁️</span>
+            </div>
+        </div>
+
+        <!-- SINGLE admin code block -->
+        <div id="adminCodeGroup" style="display:none;">
+            <div class="password-wrapper">
+                <input id="adminCode" type="password" placeholder="Admin Secret Code *">
+                <span class="toggle-password" onclick="togglePasswordVisibility('adminCode')">👁️</span>
+            </div>
+        </div>
+
+        <div id="loginActions">
+            <button class="main-btn" onclick="handleLogin()">Login to Account</button>
+        </div>
+
+        <div id="signupActions" style="display:none;">
+            <button class="main-btn" onclick="handleSignup()">Create New Account</button>
+        </div>
+
+        <div class="role-switcher">
+            <span id="roleText">Accessing as Student/Faculty</span>
+            <button class="ghost-btn" id="toggleRoleBtn" onclick="toggleRole()">Switch to Admin</button>
+        </div>
+    </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
