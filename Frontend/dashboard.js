@@ -20,8 +20,13 @@ function toggleHistory() {
     document.getElementById("resolvedTabBtn").style.display = isHistoryMode ? "block" : "none";
 
     const btn = document.getElementById("histBtn");
-    btn.innerText = isHistoryMode ? "Back to Pending" : `History (${document.getElementById("historyCount").innerText})`;
     btn.classList.toggle("history-active", isHistoryMode);
+
+    if (isHistoryMode) {
+        btn.innerText = "Back to Pending";
+    } else {
+        btn.innerHTML = `History (<span id="historyCount">${document.getElementById("historyCountDisplay").innerText}</span>)`;
+    }
 
     loadDashboard();
 }
@@ -39,8 +44,12 @@ function filterItems(type) {
 async function loadDashboard() {
     const activeList = document.getElementById("adminReportsList");
     const historyList = document.getElementById("historyList");
-    const search = document.getElementById("adminSearch").value.toLowerCase();
-    const cat = document.getElementById("categoryFilter").value;
+
+    const searchInput = document.getElementById("adminSearch");
+    const categoryInput = document.getElementById("categoryFilter");
+
+    const search = searchInput ? searchInput.value.toLowerCase() : "";
+    const cat = categoryInput ? categoryInput.value : "";
 
     try {
         const res = await fetch("http://localhost:5000/api/reports");
@@ -49,16 +58,19 @@ async function loadDashboard() {
         const pending = reports.filter(r => !r.resolvedAt);
         const resolved = reports.filter(r => r.resolvedAt);
 
-        document.getElementById("lostCount").innerText = pending.filter(r => r.type === "lost").length;
-        document.getElementById("foundCount").innerText = pending.filter(r => r.type === "found").length;
-        document.getElementById("historyCount").innerText = resolved.length;
+        document.getElementById("lostCount").innerText =
+            pending.filter(r => r.type === "lost").length;
+
+        document.getElementById("foundCount").innerText =
+            pending.filter(r => r.type === "found").length;
+
         document.getElementById("historyCountDisplay").innerText = resolved.length;
 
         if (!isHistoryMode) {
             const list = pending.filter(r =>
                 r.type === currentFilter &&
                 (r.name.toLowerCase().includes(search) ||
-                (r.fullName && r.fullName.toLowerCase().includes(search))) &&
+                    (r.fullName && r.fullName.toLowerCase().includes(search))) &&
                 (cat === "" || r.category === cat)
             );
 
@@ -67,7 +79,6 @@ async function loadDashboard() {
                 : list.reverse().map(renderPendingCard).join("");
 
         } else {
-            // --- REPLACED HISTORY RENDERING CODE ---
             const filteredHistory = resolved.filter(r =>
                 r.name.toLowerCase().includes(search) ||
                 (r.fullName && r.fullName.toLowerCase().includes(search))
@@ -92,7 +103,7 @@ async function loadDashboard() {
                 `).join("");
         }
     } catch (err) {
-        console.error(err);
+        console.error("Dashboard error:", err);
         alert("Failed to load dashboard");
     }
 }
@@ -125,17 +136,49 @@ function renderPendingCard(item) {
 
 /* Resolve */
 async function resolveReport(id) {
-    const res = await fetch(`http://localhost:5000/api/reports/${id}/resolve`, { method: "PATCH" });
-    if (res.ok) loadDashboard();
-    else alert("Resolve failed");
+    try {
+        const res = await fetch(`http://localhost:5000/api/reports/${id}/resolve`, { method: "PATCH" });
+        if (res.ok) loadDashboard();
+        else alert("Resolve failed");
+    } catch {
+        alert("Server error");
+    }
 }
 
 /* Delete */
 async function deleteReport(id) {
     if (!confirm("Delete this report?")) return;
-    const res = await fetch(`http://localhost:5000/api/reports/${id}`, { method: "DELETE" });
-    if (res.ok) loadDashboard();
-    else alert("Delete failed");
+    try {
+        const res = await fetch(`http://localhost:5000/api/reports/${id}`, { method: "DELETE" });
+        if (res.ok) loadDashboard();
+        else alert("Delete failed");
+    } catch {
+        alert("Server error");
+    }
+}
+
+/* Export to CSV */
+async function exportToExcel() {
+    try {
+        const res = await fetch("http://localhost:5000/api/reports");
+        const reports = await res.json();
+
+        let csv = "Type,Item,Reporter,Mobile,Category,Status\n";
+
+        reports.forEach(r => {
+            csv += `${r.type},${r.name},${r.fullName || ""},${r.mobile || ""},${r.category},${r.resolvedAt ? "Resolved" : "Pending"}\n`;
+        });
+
+        const blob = new Blob([csv], { type: "text/csv" });
+        const url = window.URL.createObjectURL(blob);
+
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "reclaimx-reports.csv";
+        a.click();
+    } catch {
+        alert("Export failed");
+    }
 }
 
 /* Modal */

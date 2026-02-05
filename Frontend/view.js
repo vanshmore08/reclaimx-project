@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // User session check (backend login se set session)
   if (!sessionStorage.getItem("userLoggedIn")) {
-    window.location.href = "index.html";
+    window.location.href = "user-access.html";
     return;
   }
 

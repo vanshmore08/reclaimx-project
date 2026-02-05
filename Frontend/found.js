@@ -53,7 +53,7 @@ function submitFound() {
   .then(res => res.json())
   .then(() => {
     alert("Found item reported successfully!");
-    window.location.href = "dashboard.html";
+    window.location.href = "user-access.html";
   })
   .catch(err => {
     console.error(err);
