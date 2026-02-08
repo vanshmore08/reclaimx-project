@@ -1,7 +1,7 @@
 let isSignUp = false;
 let isAdminMode = false;
 
-const BACKEND_URL = "http://localhost:5000/api";
+const BACKEND_URL = "https://reclaimx-project.onrender.com/api";
 
 /* Toggle Login / Signup */
 function toggleForm(type) {
@@ -63,7 +63,7 @@ async function handleLogin() {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                username: email,   // ✅ FIX HERE
+                username: email,
                 password
             })
         });
@@ -103,7 +103,7 @@ async function handleSignup() {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                username: email,   // ✅ FIX HERE
+                username: email,
                 password
             })
         });

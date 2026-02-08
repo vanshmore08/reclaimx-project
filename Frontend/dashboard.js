@@ -52,7 +52,7 @@ async function loadDashboard() {
     const cat = categoryInput ? categoryInput.value : "";
 
     try {
-        const res = await fetch("http://localhost:5000/api/reports");
+        const res = await fetch("https://reclaimx-project.onrender.com/api/reports");
         const reports = await res.json();
 
         const pending = reports.filter(r => !r.resolvedAt);
@@ -137,7 +137,7 @@ function renderPendingCard(item) {
 /* Resolve */
 async function resolveReport(id) {
     try {
-        const res = await fetch(`http://localhost:5000/api/reports/${id}/resolve`, { method: "PATCH" });
+        const res = await fetch(`https://reclaimx-project.onrender.com/api/reports/${id}/resolve`, { method: "PATCH" });
         if (res.ok) loadDashboard();
         else alert("Resolve failed");
     } catch {
@@ -149,7 +149,7 @@ async function resolveReport(id) {
 async function deleteReport(id) {
     if (!confirm("Delete this report?")) return;
     try {
-        const res = await fetch(`http://localhost:5000/api/reports/${id}`, { method: "DELETE" });
+        const res = await fetch(`https://reclaimx-project.onrender.com/api/reports/${id}`, { method: "DELETE" });
         if (res.ok) loadDashboard();
         else alert("Delete failed");
     } catch {
@@ -160,7 +160,7 @@ async function deleteReport(id) {
 /* Export to CSV */
 async function exportToExcel() {
     try {
-        const res = await fetch("http://localhost:5000/api/reports");
+        const res = await fetch("https://reclaimx-project.onrender.com/api/reports");
         const reports = await res.json();
 
         let csv = "Type,Item,Reporter,Mobile,Category,Status\n";
