@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const box = document.getElementById("foundItemsList");
 
-  // User session check (backend login se set session)
+  const BACKEND_URL = "https://reclaimx-project.onrender.com/api";
+
+  // User session check
   if (!sessionStorage.getItem("userLoggedIn")) {
     window.location.href = "user-access.html";
     return;
@@ -9,14 +11,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     // Fetch all reports from backend
-    const res = await fetch("http://localhost:5000/api/reports");
+    const res = await fetch(`${BACKEND_URL}/reports`);
     const allReports = await res.json();
 
     // Filter only 'found' type items
     const foundItems = allReports.filter(
-  r => r.type === "found" && !r.resolvedAt
-);
-
+      r => r.type === "found" && !r.resolvedAt
+    );
 
     if (foundItems.length === 0) {
       box.innerHTML = `
@@ -51,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-/* Image modal popup (optional, same style as dashboard) */
+/* Image modal popup */
 function openModal(src) {
   const modal = document.createElement("div");
   modal.style.cssText = `
