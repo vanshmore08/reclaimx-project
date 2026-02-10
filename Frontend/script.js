@@ -5,6 +5,7 @@ const BACKEND_URL = "https://reclaimx-project.onrender.com/api";
 
 /* Toggle Login / Signup */
 function toggleForm(type) {
+    
     isSignUp = (type === 'signup');
 
     document.getElementById("formTitle").innerText =
@@ -20,6 +21,9 @@ function toggleForm(type) {
 
     document.getElementById("loginTab").classList.toggle("active", !isSignUp);
     document.getElementById("signupTab").classList.toggle("active", isSignUp);
+document.getElementById("username").style.display =
+    isSignUp ? "block" : "none";
+
 }
 
 /* Toggle Admin / User */
@@ -62,10 +66,14 @@ async function handleLogin() {
         const res = await fetch(`${BACKEND_URL}/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                username: email,
-                password
-            })
+            const username = document.getElementById("username").value.trim();
+
+body: JSON.stringify({
+  username,
+  email,
+  password
+})
+
         });
 
         const data = await res.json();

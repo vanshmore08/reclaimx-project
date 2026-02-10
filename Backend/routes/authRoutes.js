@@ -6,10 +6,17 @@ const User = require("../models/userModel");
 /* ================= SIGNUP ================= */
 router.post("/signup", async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, email, password } = req.body;
 
-    // check user exists
-    const exists = await User.findOne({ username });
+    if (!username || !email || !password) {
+      return res.status(400).json({ message: "All fields required" });
+    }
+
+    // check if email or username exists
+    const exists = await User.findOne({
+      $or: [{ username }, { email }]
+    });
+
     if (exists) {
       return res.status(400).json({ message: "User already exists" });
     }
@@ -19,6 +26,7 @@ router.post("/signup", async (req, res) => {
 
     const user = new User({
       username,
+      email,
       password: hashedPassword
     });
 
