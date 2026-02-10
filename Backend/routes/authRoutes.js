@@ -3,30 +3,19 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/userModel");
 
-/* ================= SIGNUP ================= */
 router.post("/signup", async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, password } = req.body;
 
-    if (!username || !email || !password) {
-      return res.status(400).json({ message: "All fields required" });
-    }
-
-    // check if email or username exists
-    const exists = await User.findOne({
-      $or: [{ username }, { email }]
-    });
-
+    const exists = await User.findOne({ username });
     if (exists) {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    // hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = new User({
       username,
-      email,
       password: hashedPassword
     });
 

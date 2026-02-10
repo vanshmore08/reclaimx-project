@@ -19,11 +19,8 @@ function toggleForm(type) {
     document.getElementById("loginActions").style.display = isSignUp ? "none" : "block";
     document.getElementById("signupActions").style.display = isSignUp ? "block" : "none";
 
-    document.getElementById("loginTab").classList.toggle("active", !isSignUp);
+    document.getElementById("loginTab").classList.toggle("active", !isSignUp); 
     document.getElementById("signupTab").classList.toggle("active", isSignUp);
-document.getElementById("username").style.display =
-    isSignUp ? "block" : "none";
-
 }
 
 /* Toggle Admin / User */
